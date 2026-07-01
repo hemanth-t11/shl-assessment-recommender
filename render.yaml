@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: shl-assessment-agent
+    env: docker
+    plan: free
