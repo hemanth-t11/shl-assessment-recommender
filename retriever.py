@@ -1,47 +1,40 @@
-import faiss
 import pickle
+import faiss
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from config import EMBEDDING_MODEL, TOP_K
 
-# Load embedding model
-model = SentenceTransformer(EMBEDDING_MODEL)
+# Lazy-loaded model
+_model = None
 
-# Load FAISS index
+def get_model():
+    global _model
+    if _model is None:
+        _model = SentenceTransformer(EMBEDDING_MODEL)
+    return _model
+
+# Load FAISS index once
 index = faiss.read_index("vectorstore/index.faiss")
 
-# Load metadata
 with open("vectorstore/metadata.pkl", "rb") as f:
     metadata = pickle.load(f)
 
 
 def retrieve(query, k=TOP_K):
-    """
-    Retrieve top-k most relevant SHL assessments
-    """
+    model = get_model()
 
     embedding = model.encode([query])
-
     embedding = np.array(embedding).astype("float32")
 
     distances, indices = index.search(embedding, k)
 
     results = []
 
-    seen = set()
-
     for idx in indices[0]:
-
         if idx == -1:
             continue
 
         item = metadata[idx]
-
-        # Remove duplicate assessments
-        if item.get("entity_id") in seen:
-            continue
-
-        seen.add(item.get("entity_id"))
 
         results.append({
             "entity_id": item.get("entity_id"),
