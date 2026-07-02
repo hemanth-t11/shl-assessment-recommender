@@ -2,7 +2,7 @@
 
 An AI-powered assessment recommendation system built using **FastAPI**, **Google Gemini**, **FAISS**, and **Sentence Transformers**. The application recommends suitable SHL assessments based on job descriptions, required skills, and hiring requirements using Retrieval-Augmented Generation (RAG).
 
----
+
 
 ## Features
 
@@ -15,7 +15,7 @@ An AI-powered assessment recommendation system built using **FastAPI**, **Google
 - Prompt injection protection
 - Deployable using Docker and Render
 
----
+
 
 ## Tech Stack
 
@@ -27,7 +27,7 @@ An AI-powered assessment recommendation system built using **FastAPI**, **Google
 - Docker
 - Render
 
----
+
 
 ## Project Structure
 
@@ -53,7 +53,7 @@ shl-assessment-recommender/
     └── metadata.pkl
 ```
 
----
+
 
 ## Installation
 
@@ -91,7 +91,7 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
----
+
 
 ## Environment Variables
 
@@ -101,7 +101,7 @@ Create a `.env` file
 GOOGLE_API_KEY=YOUR_GEMINI_API_KEY
 ```
 
----
+
 
 ## Build Vector Database
 
@@ -111,7 +111,7 @@ Generate embeddings and FAISS index
 python embed.py
 ```
 
----
+
 
 ## Run Application
 
@@ -131,7 +131,7 @@ Swagger UI
 http://127.0.0.1:8000/docs
 ```
 
----
+
 
 ## API Endpoints
 
@@ -149,7 +149,7 @@ Response
 }
 ```
 
----
+
 
 ### Chat Endpoint
 
@@ -186,7 +186,7 @@ Example Response
 }
 ```
 
----
+
 
 ## Architecture
 
@@ -209,7 +209,6 @@ Google Gemini
 Recommended Assessments
 ```
 
----
 
 ## Retrieval-Augmented Generation (RAG)
 
@@ -219,7 +218,7 @@ Recommended Assessments
 4. Retrieved assessments are provided as context to Gemini.
 5. Gemini generates a grounded recommendation based only on the retrieved assessments.
 
----
+
 
 ## Deployment
 
